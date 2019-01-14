@@ -1,0 +1,3 @@
+wsdl: https://slnfsapp01.speedleasing.azure/mpower-test/services/LPPAPIntervalSchedule?wsdl
+path_to_file: docs/pap_60.csv
+lease_terms: 60
