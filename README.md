@@ -2,9 +2,15 @@ Load Client for PAP Interval Schedule
 ==============
 SOAP client for the [PAP Interval Schedule](https://github.com/attiq/pap_Interval_schedule_service)
 
-Uses the [Savon](http://savonrb.com) SOAP client library
+Uses the [Ruby](https://www.ruby-lang.org/en/)
 
 If you have any issues, suggestions, improvements, etc. then please log them using GitHub issues.
+
+## Requirements
+
+* [bash] >= 3.x
+* [ruby](https://www.ruby-lang.org/en/documentation/installation/) 
+
 
 Usage
 -----
@@ -16,7 +22,7 @@ On your shell run: ./load.rb
 
 License
 -------
-The EchoService Client in Ruby is released under the MIT license.
+The PAP Interval Schedule Client in Ruby is released under the MIT license.
 
 Author
 ------
