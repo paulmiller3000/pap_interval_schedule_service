@@ -20,6 +20,9 @@ class Load
 
     # Read CSV file to load the data to LeasePak API
     CSV.foreach(@config["path_to_file"], :headers => true, :col_sep => ',') do |row|
+
+      puts "Processing request for APPLICATION: #{row["appNumber"]}"
+
       # Post XML data to LeasePak API to save the PAP Schedule data
       response = @client.call(:add_schedule, message: {inputXmlStream: generate_xml(row)})
 
@@ -27,22 +30,31 @@ class Load
       res = Nokogiri.XML(response.hash[:envelope][:body][:add_schedule_response][:return])
 
       if res.search('TYPE').text.eql?("ERROR")
-        errors << [errors.size + 1, res.search('KEY').text, res.search('FIELD').text, res.search('MSGCODE').text, res.search('MSGTEXT').text]
+        errors << "APPID:#{res.search('KEY').text}, FIELD:#{res.search('FIELD').text}, CODE:#{ res.search('MSGCODE').text}, MSG:#{ res.search('MSGTEXT').text}"
       else
-        infos << [infos.size + 1, res.search('KEY').text, res.search('FIELD').text, res.search('MSGCODE').text, res.search('MSGTEXT').text]
+        infos << "APPID:#{res.search('KEY').text}, FIELD:#{res.search('FIELD').text}, CODE:#{ res.search('MSGCODE').text}, MSG:#{ res.search('MSGTEXT').text}"
       end
     end
 
-    # # Store the response from LeasePak API in log file
-    CSV.open("log/responses_#{Time.now.strftime("%m_%d_%Y")}_at_#{Time.now.strftime("%I_%M%p")}.csv", "wb") do |csv|
-      csv << ["No", "AppNumber", "Field", "Code", "Response"]
-      infos.each {|info| csv << info}
-    end unless infos.empty?
+    puts "Generating Processing Summary"
+    # Store the responses from LeasePak API in log file
+    File.open('log/responses.log', 'a') do |line|
+      line.puts "\r" + "PAP Schedule Data Processed at #{Time.now}"
 
-    CSV.open("log/errors_#{Time.now.strftime("%m_%d_%Y")}_at_#{Time.now.strftime("%I_%M%p")}.csv", "wb") do |csv|
-      csv << ["No", "AppNumber", "Field", "Code", "Error"]
-      errors.each {|error| csv << error}
-    end unless errors.empty?
+      line.puts "\r" + "Summary"
+      line.puts "#{infos.size} Processed sunccessfully"
+      line.puts "#{errors.size} Errors"
+
+      line.puts "\r" + "Processed sunccessfully"
+      infos.each do |info|
+        line.puts "#{info}"
+      end unless infos.empty?
+
+      line.puts "\r" + "Errors"
+      errors.each do |error|
+        line.puts "#{error}"
+      end unless errors.empty?
+    end
 
   rescue Savon::Error => exception
     # Store message in log if client failes to connect with LeasePak API

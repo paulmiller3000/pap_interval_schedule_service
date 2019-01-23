@@ -1,0 +1,24 @@
+PAP Schedule Data Processed at 2019-01-23 21:14:40 +0500
+Summary
+0 Processed sunccessfully
+2 Errors
+Processed sunccessfully
+Errors
+1706260001, dueDate_12,1042,Invalid Date.
+1707030014, dueDate_12,1042,Invalid Date.
+PAP Schedule Data Processed at 2019-01-23 21:16:34 +0500
+Summary
+0 Processed sunccessfully
+2 Errors
+Processed sunccessfully
+Errors
+APPID:1706260001, FIELD:dueDate_12,CODE:1042,MSG:Invalid Date.
+APPID:1707030014, FIELD:dueDate_12,CODE:1042,MSG:Invalid Date.
+PAP Schedule Data Processed at 2019-01-23 21:17:05 +0500
+Summary
+0 Processed sunccessfully
+2 Errors
+Processed sunccessfully
+Errors
+APPID:1706260001, FIELD:dueDate_12, CODE:1042, MSG:Invalid Date.
+APPID:1707030014, FIELD:dueDate_12, CODE:1042, MSG:Invalid Date.
