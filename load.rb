@@ -42,10 +42,10 @@ class Load
       line.puts "\r" + "PAP Schedule Data Processed at #{Time.now}"
 
       line.puts "\r" + "Summary"
-      line.puts "#{infos.size} Processed sunccessfully"
+      line.puts "#{infos.size} Processed successfully"
       line.puts "#{errors.size} Errors"
 
-      line.puts "\r" + "Processed sunccessfully"
+      line.puts "\r" + "Processed successfully"
       infos.each do |info|
         line.puts "#{info}"
       end unless infos.empty?
