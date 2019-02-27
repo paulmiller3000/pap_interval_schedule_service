@@ -13,10 +13,15 @@ If you have any issues, suggestions, improvements, etc. then please log them usi
 
 Usage
 -----
-Clone the [PAP Interval Schedule](https://github.com/attiq/pap_Interval_schedule_service) Git repository and get it up and running
+Clone the [PAP Interval Schedule] (https://github.com/attiq/pap_Interval_schedule_service) Git repository and get it up and running
 
 * Clone this Git repository
-* Place PAP interavl schedule data csv file under "/docs" directory
+* Run the following commands:
+```
+gem update --system
+bundle
+```
+* Place PAP interval schedule data csv file under "/docs" directory
 * Set configurations insiide "/config/config.yml"
   * wsdl = LeasePak API WSDL URL
   * path_to_file = Path to the PAP interval schedule data csv file
@@ -31,4 +36,3 @@ The PAP Interval Schedule Client in Ruby is released under the MIT license.
 Author
 ------
 [Attiq Rao](https://github.com/attiq)
-
